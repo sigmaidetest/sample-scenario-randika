@@ -11,7 +11,7 @@ exports.handler = function (event, context, callback) {
 	rds.query({
 		instanceIdentifier: 'mobileBackend',
 		query: 'INSERT INTO users (Email, Password, LastName, FirstName, Address) VALUES (?, ?, ?, ?, ?);',
-		inserts: ["randikanavagamuwa@gmail.com", "password", "Navagamuwa", "Randika", "Colombo"]
+		inserts: ["randikanavagamuwa@gmail.com", "password1", "Navagamuwa", "Randika", "Colombo"]
 	}, function (error, results, connection) {
 		if (error) {
 			console.log("Error occurred");
