@@ -4,6 +4,7 @@ let SL = require('@slappforge/slappforge-sdk');
 const rds = new SL.AWS.RDS(connectionManager);
 exports.handler = function (event, context, callback) {
 
+    let response;
 	// Replace the query with the actual query
 	// You can pass the existing connection to this function.
 	// A new connection will be created if it's not present as the third param 
@@ -11,13 +12,13 @@ exports.handler = function (event, context, callback) {
 	rds.query({
 		instanceIdentifier: 'mobileBackend',
 		query: 'INSERT INTO users (Email, Password, LastName, FirstName, Address) VALUES (?, ?, ?, ?, ?);',
-		inserts: ["randikanavagamuwa@gmail.com", "password", "Navagamuwa", "Randika", "Colombo"]
+		inserts: [event.email, event.password, event.lastName, event.firstName, event.address]
 	}, function (error, results, connection) {
 		if (error) {
-			console.log("Error occurred");
+			response = "Error occured while adding a new user";
 			throw error;
 		} else {
-			console.log("Success")
+			response = "Successfully added a new user with email";
 			console.log(results);
 		}
 
@@ -25,7 +26,7 @@ exports.handler = function (event, context, callback) {
 	});
 
 
-	callback(null, 'Successfully executed');
+	callback(null, response);
 }
 
 
