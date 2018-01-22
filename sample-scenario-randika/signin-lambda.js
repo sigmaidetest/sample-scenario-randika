@@ -15,7 +15,7 @@ exports.handler = function (event, context, callback) {
 		inserts: ["randikanavagamuwa@gmail.com", "password"]
 	}, function (error, results, connection) {
 		if (error) {
-			results = results;
+			results = error;
 			throw error;
 		} else {
 			results = "Failed to process"
