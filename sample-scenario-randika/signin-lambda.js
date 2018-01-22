@@ -11,7 +11,7 @@ exports.handler = function (event, context, callback) {
 	// You must always end the DB connection after it's used
 	rds.query({
 		instanceIdentifier: 'mobilebackend',
-		query: 'SELECT * FROM users WHERE email = ? and password = ?',
+		query: 'SELECT * FROM users',
 		inserts: ["randikanavagamuwa@gmail.com", "password"]
 	}, function (error, results, connection) {
 		if (error) {
