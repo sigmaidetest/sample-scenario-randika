@@ -15,7 +15,7 @@ exports.handler = function (event, context, callback) {
 		inserts: [event.email, event.password, event.lastName, event.firstName, event.address]
 	}, function (error, results, connection) {
 		if (error) {
-			response = "Error occured while adding a new user";
+			response = error;
 			throw error;
 		} else {
 			response = "Successfully added a new user with email";
